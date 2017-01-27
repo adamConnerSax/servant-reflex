@@ -1,8 +1,6 @@
-.cabal-sandbox
-cabal.sandbox.config
-dist
-*.js
-log
-*.webapp
-*.stats
-out
+.stack-work/*
+.hg/*
+.hg*
+*~
+*#
+/dist

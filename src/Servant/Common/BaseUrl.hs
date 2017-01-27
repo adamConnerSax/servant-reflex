@@ -7,6 +7,7 @@
 {-# LANGUAGE ViewPatterns        #-}
 {-# LANGUAGE RankNTypes          #-}
 {-# LANGUAGE ScopedTypeVariables #-}
+{-# LANGUAGE CPP                 #-}
 module Servant.Common.BaseUrl (
   -- * types
     BaseUrl (..)
@@ -29,9 +30,13 @@ import           GHC.Generics
 import           Reflex
 import           Reflex.Dom
 import           Text.Read
+import           GHCJS.DOM.Types (MonadJSM)
 
-
+#if MIN_VERSION_ghcjs_dom(3,0,0)
 type SupportsServantReflex t m = (Reflex t, TriggerEvent t m, PerformEvent t m, HasWebView (Performable m), MonadIO (Performable m))
+#else
+type SupportsServantReflex t m = (Reflex t, TriggerEvent t m, PerformEvent t m, HasWebView (Performable m), MonadIO (Performable m), MonadJSM (Performable m))
+#endif
 
 -- | URI scheme to use
 data Scheme =

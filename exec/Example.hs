@@ -17,7 +17,7 @@ import Servant.Reflex
 import API
 import Data.Proxy
 import Text.Read (readMaybe)
-import Reflex.Dom
+import Reflex.Dom hiding (run)
 
 api :: Proxy API
 api = Proxy
